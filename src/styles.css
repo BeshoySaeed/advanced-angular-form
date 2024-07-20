@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ng-valid.ng-dirty:not(form):not([ngModelGroup]) {
+  border: 0.5px solid green;
+}
+.ng-invalid.ng-dirty:not(form):not([ngModelGroup]) {
+  border: 0.5px solid red;
+}
+
+.error-field,
+.pending {
+  font-size: 10px;
+  animation: errorAppearance 300ms forwards;
+  box-sizing: border-box;
+  padding-left: 12px;
+}
+
+.error-field {
+  color: red;
+}
+
+.pending {
+  color: rgb(47, 47, 201);
+}
+
+@keyframes errorAppearance {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

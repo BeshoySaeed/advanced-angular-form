@@ -1,0 +1,117 @@
+<div class="container">
+  <form
+    #form="ngForm"
+    class="form-template-container"
+    (ngSubmit)="onSubmit(form)"
+  >
+    <div class="form-field">
+      <label for="firstName">First name</label>
+      <input
+        id="firstName"
+        name="firstName"
+        [appBanWords]="['test', 'test1']"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        [(ngModel)]="user.firstName"
+        type="text"
+        appAsyncDirective
+        required
+        minlength="3"
+        maxlength="10"
+        #firstName="ngModel"
+      />
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+        <div class="error-field" [ngSwitch]="true">
+          <div *ngSwitchCase="firstName.hasError('required')">
+            First name is required.
+          </div>
+          <div *ngSwitchCase="firstName.hasError('minlength')">
+            First name must be at least 3 characters long.
+          </div>
+          <div *ngSwitchCase="firstName.hasError('maxlength')">
+            First name cannot be more than 10 characters long.
+          </div>
+          <div *ngSwitchCase="firstName.hasError('appBanWords')">
+            {{ firstName.getError("appBanWords") | json }}
+          </div>
+          <div *ngSwitchCase="firstName.hasError('appAsyncDirective')">
+            this name is token please try another name
+          </div>
+        </div>
+      </div>
+      <div class="pending" *ngIf="firstName.pending">Checking...</div>
+    </div>
+    <div class="form-field">
+      <label for="lastName">Last name</label>
+      <input
+        id="lastName"
+        name="lastName"
+        [(ngModel)]="user.lastName"
+        type="text"
+        required
+        #lastName="ngModel"
+      />
+      <!-- <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+        <div *ngIf="lastName.errors?.required">Last name is required.</div>
+      </div> -->
+    </div>
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+        type="email"
+        required
+        #email="ngModel"
+      />
+      <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.required">Email is required.</div>
+        <div *ngIf="email.errors?.email">Invalid email format.</div>
+      </div> -->
+    </div>
+    <div class="form-field">
+      <label for="nickname">Nick name</label>
+      <input
+        id="nickname"
+        name="nickname"
+        [(ngModel)]="user.nickName"
+        type="text"
+        #nickname="ngModel"
+      />
+    </div>
+    <div
+      class="field-container"
+      ngModelGroup="passowrd-group"
+      #passGroup="ngModelGroup"
+      appConfirmPass
+    >
+      <div class="form-field">
+        <label for="nickname">Password</label>
+        <input
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          type="password"
+          #password="ngModel"
+        />
+      </div>
+      <div class="form-field">
+        <label for="nickname">confirm pass</label>
+        <input
+          id="confirm"
+          name="confirm"
+          [(ngModel)]="user.confirm"
+          type="password"
+          #confirm="ngModel"
+        />
+      </div>
+      <div
+        class="error-field"
+        *ngIf="confirm.dirty && confirm.hasError('confirmPassword')"
+      >
+        Password and confirmation not Match!
+      </div>
+    </div>
+    <button class="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>
