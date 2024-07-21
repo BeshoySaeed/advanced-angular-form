@@ -2,7 +2,8 @@
   <form
     #form="ngForm"
     class="form-template-container"
-    (ngSubmit)="onSubmit(form)"
+    (ngSubmit)="onSubmit($event)"
+    (reset)="resetForm($event)"
   >
     <div class="form-field">
       <label for="firstName">First name</label>
@@ -31,7 +32,8 @@
             First name cannot be more than 10 characters long.
           </div>
           <div *ngSwitchCase="firstName.hasError('appBanWords')">
-            {{ firstName.getError("appBanWords") | json }}
+            {{ firstName.getError("appBanWords").controlVal }}
+            is banned please try another name
           </div>
           <div *ngSwitchCase="firstName.hasError('appAsyncDirective')">
             this name is token please try another name
@@ -112,6 +114,9 @@
         Password and confirmation not Match!
       </div>
     </div>
-    <button class="submit" [disabled]="form.invalid">Submit</button>
+    <button class="submit" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+    <button class="reset" type="reset">reset</button>
   </form>
 </div>

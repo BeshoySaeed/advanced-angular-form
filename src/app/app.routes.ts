@@ -6,6 +6,16 @@ export const routes: Routes = [
     loadComponent: () =>
       import(
         './components/angular-template-form/angular-template-form.component'
-      ).then((m) => m.AngularTemplateFormComponent),
+      ).then((c) => c.AngularTemplateFormComponent),
+  },
+  {
+    path: 'reactive',
+    loadComponent: () =>
+      import(
+        './components/angular-reactive-form/angular-reactive-form.component'
+      ).then((c) => {
+        console.log(c);
+        return c.AngularReactiveFormComponent;
+      }),
   },
 ];

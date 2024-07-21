@@ -25,8 +25,6 @@ export class AsyncDirectiveDirective implements AsyncValidator {
   validate(
     control: AbstractControl
   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    console.log(control.value);
-
     return this.http
       .get<any[]>(
         `https://jsonplaceholder.typicode.com/users?username=${control.value}`

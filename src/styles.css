@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.ng-valid.ng-dirty:not(form):not([ngModelGroup]) {
+.ng-valid.ng-dirty:not(form, [ngModelGroup], [formGroupName], [formArrayName]) {
   border: 0.5px solid green;
 }
 .ng-invalid.ng-dirty:not(form):not([ngModelGroup]) {

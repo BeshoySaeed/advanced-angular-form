@@ -1,0 +1,58 @@
+<div class="container">
+  <form class="form-template-container" [formGroup]="form">
+    <pre>
+      {{ form.value | json }}
+    </pre>
+    <div class="form-field">
+      <label for="firstName">First name</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+    </div>
+    <div class="form-field">
+      <label for="lastName">Last name</label>
+      <input id="lastName" type="text" formControlName="lastName" />
+    </div>
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+    </div>
+    <div class="form-field">
+      <label for="nickname">Nick name</label>
+      <input id="nickname" formControlName="nickName" type="text" />
+    </div>
+    <fieldset class="field-container" formGroupName="passGroup">
+      <legend>Password group</legend>
+      <div class="form-field">
+        <label for="nickname">Password</label>
+        <input id="password" formControlName="password" type="password" />
+      </div>
+      <div class="form-field">
+        <label for="nickname">confirm pass</label>
+        <input id="confirm" formControlName="confirm" type="password" />
+      </div>
+    </fieldset>
+    <fieldset class="field-container" formArrayName="phones">
+      <legend>Mobile Numbers</legend>
+      <div class="phones-controls">
+        <button (click)="addControl()">+</button>
+      </div>
+      <div
+        class="form-field"
+        *ngFor="let phone of phones.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <label for="phone_{{ i }}">{{ i + 1 }} Mobile</label>
+        <div class="inp-wrapper">
+          <select class="label-select" formControlName="label" id="">
+            <option *ngFor="let label of phoneLabels" [value]="label">
+              {{ label }}
+            </option>
+          </select>
+          <input type="number" id="phone_{{ i }}" formControlName="phone" />
+          <button (click)="removeControl(i)">-</button>
+        </div>
+      </div>
+    </fieldset>
+    <button class="submit" type="submit">Submit</button>
+    <button class="reset" type="reset">reset</button>
+  </form>
+</div>

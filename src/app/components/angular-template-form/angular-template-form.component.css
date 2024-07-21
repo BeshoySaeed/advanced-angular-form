@@ -26,3 +26,13 @@ input {
   -o-border-radius: 8px;
   border: 0.4px solid black;
 }
+
+button {
+  width: 100%;
+  margin: 2px 0;
+  border-radius: 6px;
+}
+button[type="reset"] {
+  background-color: transparent;
+  border: none;
+}

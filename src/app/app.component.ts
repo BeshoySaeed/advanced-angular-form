@@ -2,11 +2,17 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AngularTemplateFormComponent } from './components/angular-template-form/angular-template-form.component';
 import { FormsModule } from '@angular/forms';
+import { AngularReactiveFormComponent } from './components/angular-reactive-form/angular-reactive-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AngularTemplateFormComponent, FormsModule],
+  imports: [
+    RouterOutlet,
+    FormsModule,
+    AngularTemplateFormComponent,
+    AngularReactiveFormComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
