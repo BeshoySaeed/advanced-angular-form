@@ -1,8 +1,5 @@
 <div class="container">
   <form class="form-template-container" [formGroup]="form">
-    <pre>
-      {{ form.value | json }}
-    </pre>
     <div class="form-field">
       <label for="firstName">First name</label>
       <input id="firstName" formControlName="firstName" type="text" />
@@ -51,6 +48,15 @@
           <button (click)="removeControl(i)">-</button>
         </div>
       </div>
+    </fieldset>
+    <fieldset class="field-container" formGroupName="skills">
+      <legend>Skills</legend>
+      <ng-container *ngIf="skill$ | async as skills">
+        <div class="skills-container" *ngFor="let skill of skills">
+          <input type="checkbox" [id]="skill" [formControlName]="skill" />
+          <label [for]="skill">{{ skill }}</label>
+        </div>
+      </ng-container>
     </fieldset>
     <button class="submit" type="submit">Submit</button>
     <button class="reset" type="reset">reset</button>

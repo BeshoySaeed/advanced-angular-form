@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AngularTemplateFormComponent } from './components/angular-template-form/angular-template-form.component';
 import { FormsModule } from '@angular/forms';
 import { AngularReactiveFormComponent } from './components/angular-reactive-form/angular-reactive-form.component';
+import { HeaderNavComponent } from './components/header-nav/header-nav.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { AngularReactiveFormComponent } from './components/angular-reactive-form
     FormsModule,
     AngularTemplateFormComponent,
     AngularReactiveFormComponent,
+    HeaderNavComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

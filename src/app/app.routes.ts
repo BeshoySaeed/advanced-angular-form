@@ -14,7 +14,6 @@ export const routes: Routes = [
       import(
         './components/angular-reactive-form/angular-reactive-form.component'
       ).then((c) => {
-        console.log(c);
         return c.AngularReactiveFormComponent;
       }),
   },

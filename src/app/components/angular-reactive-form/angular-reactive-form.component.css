@@ -2,10 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding: 50px;
 }
 
 .form-template-container {
@@ -19,11 +18,15 @@
   display: block;
 }
 
-input {
+input:not([type="checkbox"]) {
   padding: 5px;
   width: 100%;
   border-radius: 6px;
   border: 0.4px solid black;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
 }
 
 button {
