@@ -179,10 +179,6 @@ this.form = new FormGroup({
 
 Contributions are welcome! Please feel free to submit a Pull Request. Let's make this project even more awesome together! 💪
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
 
 Made with ❤️ by [Bishoy](https://github.com/BeshoySaeed)
