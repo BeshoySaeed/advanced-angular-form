@@ -6,13 +6,18 @@
       <ng-container *ngIf="form.get('firstName') as firstName">
         <div
           class="error-field"
-          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          *ngIf="firstName && (firstName.dirty || firstName.touched)"
         >
+          <div *ngIf="firstName?.hasError('required')">Name is required</div>
           <div *ngIf="firstName?.hasError('banWord')">
             {{ firstName.getError("banWord").bannedWord }} not allowed try
             another name
           </div>
+          <div *ngIf="firstName.hasError('isExist')">
+            this name is already exist try another one
+          </div>
         </div>
+        <div *ngIf="firstName.pending" class="pending">Checking...</div>
       </ng-container>
     </div>
     <div class="form-field">
@@ -63,7 +68,7 @@
     <fieldset class="field-container" formArrayName="phones">
       <legend>Mobile Numbers</legend>
       <div class="phones-controls">
-        <button (click)="addControl()">+</button>
+        <button type="button" (click)="addControl()">+</button>
       </div>
       <div
         class="form-field"
@@ -78,7 +83,7 @@
             </option>
           </select>
           <input type="number" id="phone_{{ i }}" formControlName="phone" />
-          <button (click)="removeControl(i)">-</button>
+          <button type="button" (click)="removeControl(i)">-</button>
         </div>
       </div>
     </fieldset>

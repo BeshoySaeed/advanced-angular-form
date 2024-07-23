@@ -12,6 +12,7 @@ import { Observable, take, tap } from 'rxjs';
 import { SkillsService } from '../../services/skills.service';
 import { banWord } from '../../validators-functions/banWord';
 import { passwordConfirmation } from '../../validators-functions/validatePassword';
+import { AsyncValidator } from '../../validators-functions/async-validator';
 
 @Component({
   selector: 'app-angular-reactive-form',
@@ -27,16 +28,23 @@ export class AngularReactiveFormComponent {
   constructor(
     private skillsService: SkillsService,
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private asyncValidators: AsyncValidator
   ) {
     this.form = this.fb.group({
       firstName: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          banWord(['test', 'test1', 'dummy']),
-        ],
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(2),
+            banWord(['test', 'test1', 'dummy']),
+          ],
+          asyncValidators: [
+            this.asyncValidators.validate.bind(this.asyncValidators),
+          ],
+          updateOn: 'blur',
+        },
       ],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       nickName: [
