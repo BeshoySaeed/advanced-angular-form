@@ -3,6 +3,17 @@
     <div class="form-field">
       <label for="firstName">First name</label>
       <input id="firstName" formControlName="firstName" type="text" />
+      <ng-container *ngIf="form.get('firstName') as firstName">
+        <div
+          class="error-field"
+          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        >
+          <div *ngIf="firstName?.hasError('banWord')">
+            {{ firstName.getError("banWord").bannedWord }} not allowed try
+            another name
+          </div>
+        </div>
+      </ng-container>
     </div>
     <div class="form-field">
       <label for="lastName">Last name</label>
@@ -19,12 +30,34 @@
     <fieldset class="field-container" formGroupName="passGroup">
       <legend>Password group</legend>
       <div class="form-field">
-        <label for="nickname">Password</label>
+        <label for="password">Password</label>
         <input id="password" formControlName="password" type="password" />
+        @let password = form.get('passGroup.password')!;
+        <ng-container *ngIf="password && (password.dirty || password.touched)">
+          <div class="error-field" *ngIf="password.hasError('pattern')">
+            Pease inter a valid password
+            <strong>2 upper case and 6 digits</strong>
+          </div>
+          <div class="error-field" *ngIf="password.hasError('required')">
+            Password is required
+          </div>
+        </ng-container>
       </div>
       <div class="form-field">
-        <label for="nickname">confirm pass</label>
+        <label for="confirm">confirm pass</label>
         <input id="confirm" formControlName="confirm" type="password" />
+        @let confirm = form.get('passGroup.confirm')!;
+        <ng-container *ngIf="confirm && (confirm.dirty || confirm.touched)">
+          <div class="error-field" *ngIf="confirm.hasError('required')">
+            Confirmation is required
+          </div>
+          <div
+            class="error-field"
+            *ngIf="confirm.hasError('passwordConfirmation')"
+          >
+            Password not match
+          </div>
+        </ng-container>
       </div>
     </fieldset>
     <fieldset class="field-container" formArrayName="phones">

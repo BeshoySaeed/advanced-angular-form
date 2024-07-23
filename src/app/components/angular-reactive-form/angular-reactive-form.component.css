@@ -46,6 +46,10 @@ button[type="reset"] {
 }
 .form-field {
   width: 100%;
+  margin-bottom: 5px;
+}
+fieldset {
+  margin-bottom: 5px;
 }
 
 .phones-controls {
@@ -80,4 +84,8 @@ button[type="reset"] {
 
 .label-select {
   margin-right: 4px;
+}
+
+legend {
+  font-size: 12px;
 }

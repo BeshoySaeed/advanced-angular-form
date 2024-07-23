@@ -6,9 +6,12 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Observable, take, tap } from 'rxjs';
 import { SkillsService } from '../../services/skills.service';
+import { banWord } from '../../validators-functions/banWord';
+import { passwordConfirmation } from '../../validators-functions/validatePassword';
 
 @Component({
   selector: 'app-angular-reactive-form',
@@ -27,14 +30,36 @@ export class AngularReactiveFormComponent {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      firstName: '',
-      lastName: '',
-      nickName: '',
-      email: '',
-      passGroup: this.fb.group({
-        password: '',
-        confirm: '',
-      }),
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          banWord(['test', 'test1', 'dummy']),
+        ],
+      ],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      nickName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.pattern(/^[\w.]+$/),
+        ],
+      ],
+      email: ['', [Validators.email]],
+      passGroup: this.fb.group(
+        {
+          password: [
+            '',
+            [Validators.pattern(/^[A-Z]{2}[0-9]{6}$/), Validators.required],
+          ],
+          confirm: [{ value: '', disabled: true }, [Validators.required]],
+        },
+        {
+          validators: [passwordConfirmation],
+        }
+      ),
       phones: this.fb.array([
         this.fb.group({
           label: this.fb.nonNullable.control(this.phoneLabels[0]),
@@ -48,6 +73,17 @@ export class AngularReactiveFormComponent {
     this.skill$ = this.skillsService
       .getSkills()
       .pipe(tap((skills) => this.addToForm(skills)));
+    this.form.get('passGroup.password')?.valueChanges.subscribe((pass) => {
+      const confirmControl = this.form.get('passGroup.confirm');
+      const passwordControl = this.form.get('passGroup.password');
+
+      if (pass && passwordControl?.valid) {
+        confirmControl?.enable();
+      } else {
+        confirmControl?.disable();
+      }
+      confirmControl?.updateValueAndValidity();
+    });
   }
   ngOnChange() {}
   ngOnDestroy() {}

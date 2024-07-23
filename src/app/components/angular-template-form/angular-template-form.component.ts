@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, viewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { BanWordsDirective } from '../../directives/ban-words.directive';
-import { ConfirmPassDirective } from '../../directives/confirm-pass.directive';
-import { AsyncDirectiveDirective } from '../../directives/async-directive.directive';
+import { BanWordsDirective } from '../../validators-directives/ban-words.directive';
+import { ConfirmPassDirective } from '../../validators-directives/confirm-pass.directive';
+import { AsyncDirectiveDirective } from '../../validators-directives/async-directive.directive';
 
 @Component({
   selector: 'app-angular-template-form',
