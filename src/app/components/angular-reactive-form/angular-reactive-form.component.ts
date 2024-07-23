@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
+  FormGroupDirective,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -77,6 +78,10 @@ export class AngularReactiveFormComponent {
       skills: this.fb.record<boolean>({}),
     });
   }
+
+  @ViewChild(FormGroupDirective)
+  private formDir!: FormGroupDirective;
+
   ngOnInit() {
     this.skill$ = this.skillsService
       .getSkills()
@@ -122,5 +127,11 @@ export class AngularReactiveFormComponent {
       this.skills.addControl(sk, new FormControl(false, { nonNullable: true }))
     );
     this.cdr.detectChanges();
+  }
+
+  onSubmit() {
+    console.log(this.formDir);
+    // this.form.reset();
+    this.formDir.resetForm();
   }
 }

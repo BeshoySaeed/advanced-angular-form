@@ -1,5 +1,9 @@
 <div class="container">
-  <form class="form-template-container" [formGroup]="form">
+  <form
+    class="form-template-container"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="form-field">
       <label for="firstName">First name</label>
       <input id="firstName" formControlName="firstName" type="text" />

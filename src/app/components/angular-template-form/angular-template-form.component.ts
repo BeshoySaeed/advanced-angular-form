@@ -23,7 +23,7 @@ export class AngularTemplateFormComponent {
   form!: NgForm;
   initialFormValues: unknown;
   constructor() {}
-
+  
   ngAfterViewInit() {
     queueMicrotask(() => {
       this.initialFormValues = this.form.value;
