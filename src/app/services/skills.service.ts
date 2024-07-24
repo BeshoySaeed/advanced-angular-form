@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 export class SkillsService {
   constructor() {}
 
-  getSkills() : Observable<string[]> {
-    return of(['Javascript', 'Typescript', 'RxJs', 'NgRx', 'CSS', 'HTML']);
+  getSkills(): Observable<string[]> {
+    return of(['Javascript', 'Typescript']);
   }
 }

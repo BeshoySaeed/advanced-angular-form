@@ -17,4 +17,11 @@ export const routes: Routes = [
         return c.AngularReactiveFormComponent;
       }),
   },
+  {
+    path: 'customRating',
+    loadComponent: () =>
+      import('./components/custom-rating/custom-rating.component').then((c) => {
+        return c.CustomRatingComponent;
+      }),
+  },
 ];

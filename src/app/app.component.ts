@@ -4,6 +4,7 @@ import { AngularTemplateFormComponent } from './components/angular-template-form
 import { FormsModule } from '@angular/forms';
 import { AngularReactiveFormComponent } from './components/angular-reactive-form/angular-reactive-form.component';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
+import { CustomRatingComponent } from './components/custom-rating/custom-rating.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { HeaderNavComponent } from './components/header-nav/header-nav.component
     AngularTemplateFormComponent,
     AngularReactiveFormComponent,
     HeaderNavComponent,
+    CustomRatingComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

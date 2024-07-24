@@ -120,7 +120,7 @@ export class AngularReactiveFormComponent {
     this.phones.removeAt(i);
   }
 
-  getSkills() {}
+  // getSkills() {}
 
   addToForm(skills: string[]) {
     skills.forEach((sk) =>

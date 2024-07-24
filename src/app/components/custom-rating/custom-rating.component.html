@@ -1,0 +1,15 @@
+<form class="review" (ngSubmit)="submitted($event)" [formGroup]="form">
+  <h3>Course Review</h3>
+  <!-- <paper-textarea
+    ngDefaultControl
+    formControlName="textReview"
+    label="preview text"
+    class="review-text"
+  ></paper-textarea> -->
+  <div
+    class="review-textarea"
+    contenteditable
+    formControlName="textReview"
+  ></div>
+  <button type="submit">Save</button>
+</form>

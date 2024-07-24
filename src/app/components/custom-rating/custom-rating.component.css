@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 100px);
+}
+
+.review {
+  background-color: rgb(206, 206, 206);
+  padding: 20px;
+  border-radius: 15px;
+  width: 400px;
+}
+
+h3 {
+  font-weight: 800;
+}
+
+button[type="submit"] {
+  color: white;
+  background-color: rgb(250, 132, 22);
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.review-textarea {
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px 0;
+  max-height: 74px;
+}
+
+h4 {
+  margin-bottom: 5px;
+}
+
+h4:empty:before {
+  content: attr(data-placeholder);
+  opacity: 0.6;
+}
+p:empty:before,
+div:empty:before {
+  content: attr(data-placeholder);
+  opacity: 0.6;
+}
