@@ -24,4 +24,13 @@ export const routes: Routes = [
         return c.CustomRatingComponent;
       }),
   },
+  {
+    path: 'customSelect',
+    loadComponent: () =>
+      import(
+        './components/custom-select/component/custom-select/custom-select.component'
+      ).then((c) => {
+        return c.CustomSelectComponent;
+      }),
+  },
 ];

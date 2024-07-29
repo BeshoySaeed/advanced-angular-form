@@ -8,11 +8,17 @@ import {
 } from '@angular/forms';
 import '@polymer/paper-input/paper-textarea';
 import { EditableValueAccessor } from '../../value-accessors/editable-value-accessor.directive';
+import { RatingPickerComponent } from '../rating-picker/rating-picker.component';
 
 @Component({
   selector: 'app-custom-rating',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, EditableValueAccessor],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    EditableValueAccessor,
+    RatingPickerComponent,
+  ],
   templateUrl: './custom-rating.component.html',
   styleUrl: './custom-rating.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -23,6 +29,7 @@ export class CustomRatingComponent {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       textReview: this.fb.nonNullable.control({ value: '', disabled: false }),
+      reviewRating: { value: '', disabled: false },
     });
   }
 
