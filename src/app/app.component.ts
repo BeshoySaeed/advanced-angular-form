@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularReactiveFormComponent } from './components/angular-reactive-form/angular-reactive-form.component';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
 import { CustomRatingComponent } from './components/custom-rating/custom-rating.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,13 @@ import { CustomRatingComponent } from './components/custom-rating/custom-rating.
     AngularReactiveFormComponent,
     HeaderNavComponent,
     CustomRatingComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'angular-forms';
+
+  parentYear = new Date().getFullYear();
 }
